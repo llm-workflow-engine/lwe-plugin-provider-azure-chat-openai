@@ -11,6 +11,14 @@ AZURE_OPENAI_CHAT_TYPES = [
     "azuread",
 ]
 
+
+class CustomAzureChatOpenAI(AzureChatOpenAI):
+
+    @property
+    def _llm_type(self) -> str:
+        return "azure_openai_chat"
+
+
 class ProviderAzureOpenaiChat(Provider):
     """
     Access to OpenAI chat models via the OpenAI API
@@ -57,7 +65,7 @@ class ProviderAzureOpenaiChat(Provider):
         return self.prepare_messages_for_llm_chat
 
     def llm_factory(self):
-        return AzureChatOpenAI
+        return CustomAzureChatOpenAI
 
     def make_llm(self, customizations=None, use_defaults=False):
         customizations = customizations or {}
