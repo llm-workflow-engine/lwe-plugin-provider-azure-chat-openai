@@ -1,8 +1,8 @@
-# LLM Workflow Engine (LWE) Azure Chat OpenAI Provider plugin
+# LLM Workflow Engine (LWE) Azure OpenAI Chat Provider plugin
 
-Azure Chat OpenAI Provider plugin for [LLM Workflow Engine](https://github.com/llm-workflow-engine/llm-workflow-engine)
+Azure OpenAI Chat Provider plugin for [LLM Workflow Engine](https://github.com/llm-workflow-engine/llm-workflow-engine)
 
-Access to [Azure Chat OpenAI](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models) models.
+Access to [Azure OpenAI Chat](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models) models.
 
 ## Installation
 
@@ -17,7 +17,7 @@ You'll also need a key and endpoint for the resource, see [here](https://learn.m
 Install the latest version of this software directly from github with pip:
 
 ```bash
-pip install git+https://github.com/llm-workflow-engine/lwe-plugin-provider-azure-chat-openai
+pip install git+https://github.com/llm-workflow-engine/lwe-plugin-provider-azure-openai-chat
 ```
 
 ### From source (recommended for development)
@@ -25,13 +25,13 @@ pip install git+https://github.com/llm-workflow-engine/lwe-plugin-provider-azure
 Install the latest version of this software directly from git:
 
 ```bash
-git clone https://github.com/llm-workflow-engine/lwe-plugin-provider-azure-chat-openai.git
+git clone https://github.com/llm-workflow-engine/lwe-plugin-provider-azure-openai-chat.git
 ```
 
 Install the development package:
 
 ```bash
-cd lwe-plugin-provider-azure-chat-openai
+cd lwe-plugin-provider-azure-openai-chat
 pip install -e .
 ```
 
@@ -49,7 +49,7 @@ Add the following to `config.yaml` in your profile:
 ```yaml
 plugins:
   enabled:
-    - provider_azure_chat_openai
+    - provider_azure_openai_chat
     # Any other plugins you want enabled...
 ```
 
@@ -58,7 +58,7 @@ plugins:
 From a running LWE shell:
 
 ```
-/provider azure_chat_openai
+/provider azure_openai_chat
 /model deployment_name gpt-35-turbo
 # Instead of environment variables, these values can also be set directly on the model:
 /model openai_api_key [key]

@@ -10,18 +10,18 @@ with open("README.md", "r", encoding="utf-8") as fh:
 with open('requirements.txt') as f:
     install_requirement = f.readlines()
 
-with open(path.join(FILE_DIR, 'lwe_plugin_provider_azure_chat_openai', 'version.py')) as f:
+with open(path.join(FILE_DIR, 'lwe_plugin_provider_azure_openai_chat', 'version.py')) as f:
     version = re.match(r'^__version__ = "([\w\.]+)"$', f.read().strip())[1]
 
 setup(
-    name="lwe-plugin-provider-azure-chat-openai",
+    name="lwe-plugin-provider-azure-openai-chat",
     version=version,
     author="Chad Phillips",
     author_email="chad@apartmentlines.com",
     description="LWE plugin: Azure Chat OpenAI Provider plugin",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/llm-workflow-engine/lwe-plugin-provider-azure-chat-openai",
+    url="https://github.com/llm-workflow-engine/lwe-plugin-provider-azure-openai-chat",
     packages=find_packages(),
     install_requires=install_requirement,
     classifiers=[
@@ -32,7 +32,7 @@ setup(
     python_requires=">=3.7",
     entry_points={
         "lwe_plugins": [
-            "lwe_plugin_provider_azure_chat_openai = lwe_plugin_provider_azure_chat_openai.plugin:ProviderAzureChatOpenai"
+            "lwe_plugin_provider_azure_openai_chat = lwe_plugin_provider_azure_openai_chat.plugin:ProviderAzureOpenaiChat"
         ]
     },
 )

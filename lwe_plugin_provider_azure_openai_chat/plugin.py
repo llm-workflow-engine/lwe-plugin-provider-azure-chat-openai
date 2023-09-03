@@ -4,14 +4,14 @@ from langchain.chat_models import AzureChatOpenAI
 
 from lwe.core.provider import Provider, PresetValue
 
-AZURE_CHAT_OPENAI_DEFAULT_DEPLOYMENT_NAME = "gpt-35-turbo"
-AZURE_CHAT_OPENAI_TYPES = [
+AZURE_OPENAI_CHAT_DEFAULT_DEPLOYMENT_NAME = "gpt-35-turbo"
+AZURE_OPENAI_CHAT_TYPES = [
     "azure",
     "azure_ad",
     "azuread",
 ]
 
-class ProviderAzureChatOpenai(Provider):
+class ProviderAzureOpenaiChat(Provider):
     """
     Access to OpenAI chat models via the OpenAI API
     """
@@ -43,7 +43,7 @@ class ProviderAzureChatOpenai(Provider):
 
     @property
     def default_model(self):
-        return AZURE_CHAT_OPENAI_DEFAULT_DEPLOYMENT_NAME
+        return AZURE_OPENAI_CHAT_DEFAULT_DEPLOYMENT_NAME
 
     def default_customizations(self, defaults=None):
         defaults = {
@@ -76,7 +76,7 @@ class ProviderAzureChatOpenai(Provider):
             'temperature': PresetValue(float, min_value=0.0, max_value=2.0),
             'openai_api_key': PresetValue(str, include_none=True, private=True),
             'openai_api_base': PresetValue(str, include_none=True),
-            'openai_api_type': PresetValue(str, options=AZURE_CHAT_OPENAI_TYPES, include_none=True),
+            'openai_api_type': PresetValue(str, options=AZURE_OPENAI_CHAT_TYPES, include_none=True),
             'openai_api_version': PresetValue(str, include_none=True),
             'openai_organization': PresetValue(str, include_none=True),
             'openai_proxy': PresetValue(str, include_none=True),
