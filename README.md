@@ -41,8 +41,8 @@ The following provider variables/environment variables need to be set:
 
 * `export AZURE_OPENAI_API_KEY=[key]`
 * `export AZURE_OPENAI_API_BASE=[endpoint]`
-* `export AZURE_OPENAI_TYPE=azure`
-* `export AZURE_OPENAI_VERSION=2023-05-15`
+* `export AZURE_OPENAI_API_TYPE=azure`
+* `export AZURE_OPENAI_API_VERSION=2023-05-15`
 
 Add the following to `config.yaml` in your profile:
 
@@ -63,6 +63,6 @@ From a running LWE shell:
 # Instead of environment variables, these values can also be set directly on the model:
 /model openai_api_key [key]
 /model openai_api_base [endpoint]
-/model openai_type azure
-/model openai_version 2023-05-15
+/model openai_api_type azure
+/model openai_api_version 2023-05-15
 ```
