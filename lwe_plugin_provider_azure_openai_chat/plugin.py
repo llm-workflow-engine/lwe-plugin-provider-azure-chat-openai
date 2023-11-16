@@ -5,11 +5,6 @@ from langchain.chat_models import AzureChatOpenAI
 from lwe.core.provider import Provider, PresetValue
 
 AZURE_OPENAI_CHAT_DEFAULT_DEPLOYMENT_NAME = "gpt-35-turbo"
-AZURE_OPENAI_CHAT_TYPES = [
-    "azure",
-    "azure_ad",
-    "azuread",
-]
 
 
 class CustomAzureChatOpenAI(AzureChatOpenAI):
@@ -23,10 +18,6 @@ class ProviderAzureOpenaiChat(Provider):
     """
     Access to OpenAI chat models via the OpenAI API
     """
-
-    @property
-    def model_property_name(self):
-        return 'deployment_name'
 
     @property
     def capabilities(self):
@@ -56,7 +47,7 @@ class ProviderAzureOpenaiChat(Provider):
     def default_customizations(self, defaults=None):
         defaults = {
             'openai_api_key': 'placeholder',
-            'openai_api_base': 'placeholder',
+            'azure_endpoint': 'placeholder',
             'openai_api_version': 'placeholder',
         }
         return super().default_customizations(defaults)
@@ -72,19 +63,17 @@ class ProviderAzureOpenaiChat(Provider):
         final_customizations = self.get_customizations()
         final_customizations.update(customizations)
         final_customizations['openai_api_key'] = final_customizations.get('openai_api_key', os.environ['AZURE_OPENAI_API_KEY'])
-        final_customizations['openai_api_base'] = final_customizations.get('openai_api_base', os.environ['AZURE_OPENAI_API_BASE'])
-        final_customizations['openai_api_type'] = final_customizations.get('openai_api_type', os.environ['AZURE_OPENAI_API_TYPE'])
+        final_customizations['azure_endpoint'] = final_customizations.get('azure_endpoint', os.environ['AZURE_ENDPOINT'])
         final_customizations['openai_api_version'] = final_customizations.get('openai_api_version', os.environ['AZURE_OPENAI_API_VERSION'])
         return super().make_llm(final_customizations, use_defaults)
 
     def customization_config(self):
         return {
             'verbose': PresetValue(bool),
-            'deployment_name': PresetValue(str, options=self.available_models),
+            'model': PresetValue(str, options=self.available_models),
             'temperature': PresetValue(float, min_value=0.0, max_value=2.0),
             'openai_api_key': PresetValue(str, include_none=True, private=True),
-            'openai_api_base': PresetValue(str, include_none=True),
-            'openai_api_type': PresetValue(str, options=AZURE_OPENAI_CHAT_TYPES, include_none=True),
+            'azure_endpoint': PresetValue(str, include_none=True),
             'openai_api_version': PresetValue(str, include_none=True),
             'openai_organization': PresetValue(str, include_none=True),
             'openai_proxy': PresetValue(str, include_none=True),

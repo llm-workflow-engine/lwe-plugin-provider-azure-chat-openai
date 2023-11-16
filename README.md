@@ -40,8 +40,7 @@ pip install -e .
 The following provider variables/environment variables need to be set:
 
 * `export AZURE_OPENAI_API_KEY=[key]`
-* `export AZURE_OPENAI_API_BASE=[endpoint]`
-* `export AZURE_OPENAI_API_TYPE=azure`
+* `export AZURE_ENDPOINT=[endpoint]`
 * `export AZURE_OPENAI_API_VERSION=2023-05-15`
 
 Add the following to `config.yaml` in your profile:
@@ -59,10 +58,9 @@ From a running LWE shell:
 
 ```
 /provider azure_openai_chat
-/model deployment_name gpt-35-turbo
+/model model gpt-35-turbo
 # Instead of environment variables, these values can also be set directly on the model:
 /model openai_api_key [key]
-/model openai_api_base [endpoint]
-/model openai_api_type azure
+/model openai_endpoint [endpoint]
 /model openai_api_version 2023-05-15
 ```
