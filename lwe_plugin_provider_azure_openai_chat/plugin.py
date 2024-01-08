@@ -1,6 +1,6 @@
 import os
 
-from langchain.chat_models import AzureChatOpenAI
+from langchain_community.chat_models import AzureChatOpenAI
 
 from lwe.core.provider import Provider, PresetValue
 
