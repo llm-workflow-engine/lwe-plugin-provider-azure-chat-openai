@@ -1,6 +1,6 @@
 import os
 
-from langchain_community.chat_models import AzureChatOpenAI
+from langchain_openai import AzureChatOpenAI
 
 from lwe.core.provider import Provider, PresetValue
 
@@ -20,6 +20,10 @@ class ProviderAzureOpenaiChat(Provider):
     """
 
     @property
+    def model_property_name(self):
+        return 'deployment_name'
+
+    @property
     def capabilities(self):
         return {
             'chat': True,
@@ -36,6 +40,9 @@ class ProviderAzureOpenaiChat(Provider):
                 },
                 'gpt-4-32k': {
                     'max_tokens': 32768,
+                },
+                'gpt-4-turbo': {
+                    "max_tokens": 131072,
                 },
             }
         }
@@ -70,7 +77,8 @@ class ProviderAzureOpenaiChat(Provider):
     def customization_config(self):
         return {
             'verbose': PresetValue(bool),
-            'model': PresetValue(str, options=self.available_models),
+            'deployment_name': PresetValue(str, options=self.available_models),
+            'model_version': PresetValue(str, include_none=True),
             'temperature': PresetValue(float, min_value=0.0, max_value=2.0),
             'openai_api_key': PresetValue(str, include_none=True, private=True),
             'azure_endpoint': PresetValue(str, include_none=True),
