@@ -16,7 +16,7 @@ class CustomAzureChatOpenAI(AzureChatOpenAI):
 
 class ProviderAzureOpenaiChat(Provider):
     """
-    Access to OpenAI chat models via the OpenAI API
+    Access to OpenAI chat models via the Azure OpenAI API
     """
 
     @property
