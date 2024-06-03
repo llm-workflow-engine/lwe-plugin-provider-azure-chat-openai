@@ -65,14 +65,14 @@ class ProviderAzureOpenaiChat(Provider):
     def llm_factory(self):
         return CustomAzureChatOpenAI
 
-    def make_llm(self, customizations=None, use_defaults=False):
+    def make_llm(self, customizations=None, tools=None, tool_choice=None, use_defaults=False):
         customizations = customizations or {}
         final_customizations = self.get_customizations()
         final_customizations.update(customizations)
         final_customizations['openai_api_key'] = final_customizations.get('openai_api_key', os.environ['AZURE_OPENAI_API_KEY'])
         final_customizations['azure_endpoint'] = final_customizations.get('azure_endpoint', os.environ['AZURE_ENDPOINT'])
         final_customizations['openai_api_version'] = final_customizations.get('openai_api_version', os.environ['AZURE_OPENAI_API_VERSION'])
-        return super().make_llm(final_customizations, use_defaults)
+        return super().make_llm(final_customizations, tools=tools, tool_choice=tool_choice, use_defaults=use_defaults)
 
     def customization_config(self):
         return {
