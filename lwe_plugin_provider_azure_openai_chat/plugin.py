@@ -28,28 +28,31 @@ class ProviderAzureOpenaiChat(Provider):
         return {
             'chat': True,
             'validate_models': False,
-            'models': {
-                'gpt-35-turbo': {
-                    'max_tokens': 4096,
-                },
-                'gpt-35-turbo-16k': {
-                    'max_tokens': 16384,
-                },
-                'gpt-4': {
-                    'max_tokens': 8192,
-                },
-                'gpt-4-32k': {
-                    'max_tokens': 32768,
-                },
-                'gpt-4-turbo': {
-                    "max_tokens": 131072,
-                },
-            }
         }
 
     @property
     def default_model(self):
         return AZURE_OPENAI_CHAT_DEFAULT_DEPLOYMENT_NAME
+
+    @property
+    def static_models(self):
+        return {
+            'gpt-35-turbo': {
+                'max_tokens': 4096,
+            },
+            'gpt-35-turbo-16k': {
+                'max_tokens': 16384,
+            },
+            'gpt-4': {
+                'max_tokens': 8192,
+            },
+            'gpt-4-32k': {
+                'max_tokens': 32768,
+            },
+            'gpt-4-turbo': {
+                "max_tokens": 131072,
+            },
+        }
 
     def default_customizations(self, defaults=None):
         defaults = {
